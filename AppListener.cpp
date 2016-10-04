@@ -2,17 +2,29 @@
 #include "AppListener.h"
 #include "BaseEvent.h"
 #include "BaseFilter.h"
+#include "AppDispatcher.h"
 #include <QApplication>
 
 CAppStore::CAppStore(QQuickItem* parent)
     : CBaseStore(parent)
 {
+
+    CAppDispatcher::Instance()->AddListener(this);
 }
+
+CAppStore::~CAppStore()
+{
+    CAppDispatcher::Instance()->RemoveListener(this);
+}
+
 void CAppStore::Handle(CBaseEvent* event)
 {
+
+
     int typ = event->getTypeId();
     if(m_mapFilters.find(event->getTypeId()) != m_mapFilters.end())
         m_mapFilters[event->getTypeId()]->Handle(event);
+
 }
 
 bool CAppStore::event( QEvent* ptrEvent )

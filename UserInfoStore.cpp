@@ -11,14 +11,12 @@ CUserInfoStore::CUserInfoStore(QQuickItem *parent) :CAppStore(parent),
     m_pUiData(nullptr)
 {
     setUi(new CUserInfoUiModel());
-    CAppDispatcher::Instance()->addListener(this);
 }
 
 CUserInfoStore::~CUserInfoStore()
 {
     CUserInfoStore::m_pInstance = nullptr;
     m_pUiData->deleteLater();
-    CAppDispatcher::Instance()->removeListener(this);
 }
 
 CUserInfoUiModel* CUserInfoStore::ui()

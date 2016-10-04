@@ -22,8 +22,8 @@ public:
 
     Q_INVOKABLE void dispatch(CBaseEvent* message);
 
-    void removeListener(CBaseStore* pListener);
-    void addListener(CBaseStore* pListener);
+    void RemoveListener(CBaseStore* pListener);
+    void AddListener(CBaseStore* pListener);
 
 public:
 

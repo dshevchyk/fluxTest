@@ -71,12 +71,12 @@ bool CAppDispatcher::event( CBaseEvent* ptrEvent )
     return true;
 }
 
-void CAppDispatcher::removeListener(CBaseStore* pListener)
+void CAppDispatcher::RemoveListener(CBaseStore* pListener)
 {
     CAutoLock l(&listenersMutex);
     m_vListeners.erase( std::remove( m_vListeners.begin(), m_vListeners.end(), pListener ), m_vListeners.end() );
 }
-void CAppDispatcher::addListener(CBaseStore* pListener)
+void CAppDispatcher::AddListener(CBaseStore* pListener)
 {
     CAutoLock l(&listenersMutex);
     m_vListeners.push_back(pListener);
