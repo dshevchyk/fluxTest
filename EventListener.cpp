@@ -4,8 +4,7 @@
 #include "BaseFilter.h"
 template<class EventType>
 CEventListener<EventType>::CEventListener(CBaseStore* listener){
-    listener->addFilter(CBaseFilter<EventType>::Type(),
-                        new CBaseFilter<EventType>(this));
+    listener->addFilter(new CBaseFilter<EventType>(this));
 }
 
 #endif // CEVENTLISTENER_H

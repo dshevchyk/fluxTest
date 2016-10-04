@@ -26,7 +26,8 @@ public:
 
     virtual void handle(CBaseEvent* event) = 0;
 
-    virtual void addFilter(int type, void* filter) = 0;
+
+    virtual void addFilter(IFilter* filter) = 0;
 protected:
     //QThread* m_pThread;
 };

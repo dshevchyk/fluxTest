@@ -30,8 +30,7 @@ bool CAppStore::event( CBaseEvent* ptrEvent )
     return true;
 }
 
-void CAppStore::addFilter(int type, void* filter)
+void CAppStore::addFilter(IFilter* filter)
 {
-    if(static_cast<FilterPointerType>(filter))
-        m_mapFilters[type]= static_cast<FilterPointerType>(filter);
+    m_mapFilters[filter->GetTypeId()] = filter;
 }

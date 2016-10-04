@@ -14,6 +14,7 @@ class CEventListener;
 class IFilter
 {
 public:
+    virtual int GetTypeId() = 0;
     virtual void handle(CBaseEvent* pEvent) = 0;
 };
 
@@ -32,7 +33,7 @@ public:
     }
     void handle(CBaseEvent* pEvent) override;
 
-    static int Type()
+    int GetTypeId()
     {
         return CBaseEvent::TypeId<EventType>();
     }
