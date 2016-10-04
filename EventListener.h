@@ -6,7 +6,7 @@ template<class EventType>
 class CEventListener
 {
 public:
-    virtual void onMessageReceived(EventType* event) = 0;
+    virtual void OnMessageReceived(EventType* event) = 0;
     CEventListener(CBaseStore* listener);
 };
 

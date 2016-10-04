@@ -16,14 +16,8 @@ CBaseFilter<EventType>::~CBaseFilter()
 }
 
 template <class EventType>
-std::string CBaseFilter<EventType>::getType()
+void CBaseFilter<EventType>::Handle(CBaseEvent* pEvent)
 {
-    return typeid(this).name();
-}
-
-template <class EventType>
-void CBaseFilter<EventType>::handle(CBaseEvent* pEvent)
-{
-    m_pListener->onMessageReceived(dynamic_cast<EventType*>(pEvent));
+    m_pListener->OnMessageReceived(dynamic_cast<EventType*>(pEvent));
 }
 #endif

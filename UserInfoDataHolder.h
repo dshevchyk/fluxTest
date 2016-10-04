@@ -24,4 +24,8 @@ public:
     POKER_DATA_HOLDER_PROPERTY(QString, balance, GetBalance, SetBalance, "")
 };
 
+
+using CPUserInfoWriteDH = CPWriteDataHolder<CUserInfoDataHolder>;
+using CPUserInfoReadDH = CPReadDataHolder<CUserInfoDataHolder>;
+
 #endif // CBaseDataHolder_H

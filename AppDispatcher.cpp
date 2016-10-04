@@ -7,9 +7,11 @@
 #include "AutoLock.h"
 
 CAppDispatcher* CAppDispatcher::m_pInstance = nullptr;
-std::mutex instanceMutex;
+std::mutex listenersMutex;
 
-CAppDispatcher::CAppDispatcher(QObject *parent) : QObject(parent), m_pThread(new QThread(this))
+CAppDispatcher::CAppDispatcher(QObject *parent) : QObject(parent),
+    m_pThread(new QThread(this))
+  , m_engine(nullptr)
 {
     m_pThread->start();
     moveToThread(m_pThread);
@@ -17,23 +19,27 @@ CAppDispatcher::CAppDispatcher(QObject *parent) : QObject(parent), m_pThread(new
 
 CAppDispatcher::~CAppDispatcher()
 {
-    CAutoLock l(&instanceMutex);
     CAppDispatcher::m_pInstance = nullptr;
+    CAutoLock l(&listenersMutex);
     m_vListeners.clear();
 }
 
 
 
+void CAppDispatcher::CreateInstance()
+{
+    if(CAppDispatcher::m_pInstance == nullptr)
+        CAppDispatcher::m_pInstance = new CAppDispatcher();
+}
+
+
 QObject* CAppDispatcher::Instance(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
-    CAutoLock l(&instanceMutex);
     Q_UNUSED(engine);
     Q_UNUSED(scriptEngine);
 
-    if(CAppDispatcher::m_pInstance == nullptr)
-        CAppDispatcher::m_pInstance = new CAppDispatcher();
-
-    CAppDispatcher::m_pInstance->setEngine(engine);
+    if(CAppDispatcher::m_pInstance && !CAppDispatcher::m_pInstance->m_engine)
+        CAppDispatcher::m_pInstance->setEngine(engine);
 
     return CAppDispatcher::m_pInstance;
 }
@@ -41,11 +47,7 @@ QObject* CAppDispatcher::Instance(QQmlEngine *engine, QJSEngine *scriptEngine)
 
 CAppDispatcher* CAppDispatcher::Instance()
 {
-    CAutoLock l(&instanceMutex);
-
-    if(CAppDispatcher::m_pInstance == nullptr)
-        CAppDispatcher::m_pInstance = new CAppDispatcher();
-    return dynamic_cast<CAppDispatcher*>(CAppDispatcher::m_pInstance);
+    return CAppDispatcher::m_pInstance;
 }
 void CAppDispatcher::dispatch(CBaseEvent* message)
 {
@@ -61,23 +63,22 @@ bool CAppDispatcher::event( QEvent* ptrEvent )
 }
 bool CAppDispatcher::event( CBaseEvent* ptrEvent )
 {
-
-    CAutoLock l(&instanceMutex);
+    CAutoLock l(&listenersMutex);
     for(auto& listener: m_vListeners)
     {
-        listener->handle(ptrEvent);
+        listener->Handle(ptrEvent);
     }
     return true;
 }
 
 void CAppDispatcher::removeListener(CBaseStore* pListener)
 {
-    CAutoLock l(&instanceMutex);
+    CAutoLock l(&listenersMutex);
     m_vListeners.erase( std::remove( m_vListeners.begin(), m_vListeners.end(), pListener ), m_vListeners.end() );
 }
 void CAppDispatcher::addListener(CBaseStore* pListener)
 {
-    CAutoLock l(&instanceMutex);
+    CAutoLock l(&listenersMutex);
     m_vListeners.push_back(pListener);
 }
 

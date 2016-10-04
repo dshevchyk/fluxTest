@@ -18,6 +18,7 @@ public:
 
     static CAppDispatcher* Instance();
     static QObject *Instance(QQmlEngine *engine, QJSEngine *scriptEngine);
+    static void CreateInstance();
 
     Q_INVOKABLE void dispatch(CBaseEvent* message);
 

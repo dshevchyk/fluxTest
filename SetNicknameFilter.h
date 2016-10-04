@@ -14,7 +14,7 @@ public:
 
     virtual ~CSetNicknameFilter();
 
-    void handle(CBaseEvent* pEvent) override;
+    void Handle(CBaseEvent* pEvent) override;
 
     static std::string Type()
     {

@@ -17,9 +17,9 @@ CSetNicknameFilter<ListenerType>::~CSetNicknameFilter()
 }
 
 template<class ListenerType>
-void CSetNicknameFilter<ListenerType>::handle(CBaseEvent* pEvent)
+void CSetNicknameFilter<ListenerType>::Handle(CBaseEvent* pEvent)
 {
-    CBaseFilter<ListenerType>::m_pListener->onMessageReceived(dynamic_cast<CSetNicknameEvent*>(pEvent));
+    CBaseFilter<ListenerType>::m_pListener->OnMessageReceived(dynamic_cast<CSetNicknameEvent*>(pEvent));
 }
 
 #endif

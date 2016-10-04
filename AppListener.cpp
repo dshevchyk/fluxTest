@@ -8,11 +8,11 @@ CAppStore::CAppStore(QQuickItem* parent)
     : CBaseStore(parent)
 {
 }
-void CAppStore::handle(CBaseEvent* event)
+void CAppStore::Handle(CBaseEvent* event)
 {
     int typ = event->getTypeId();
     if(m_mapFilters.find(event->getTypeId()) != m_mapFilters.end())
-        m_mapFilters[event->getTypeId()]->handle(event);
+        m_mapFilters[event->getTypeId()]->Handle(event);
 }
 
 bool CAppStore::event( QEvent* ptrEvent )
@@ -30,7 +30,7 @@ bool CAppStore::event( CBaseEvent* ptrEvent )
     return true;
 }
 
-void CAppStore::addFilter(IFilter* filter)
+void CAppStore::AddFilter(IFilter* filter)
 {
     m_mapFilters[filter->GetTypeId()] = filter;
 }

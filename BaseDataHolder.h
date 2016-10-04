@@ -61,6 +61,7 @@ public:
 
     const DataType * data() const { return m_pData; }
 
+    const DataType *operator->() const { return m_pData; }
 protected:
     DataType* m_pData;
 };
@@ -81,6 +82,7 @@ public:
 
     DataType * data() const { return m_pData; }
 
+    DataType *operator->() const { return m_pData; }
 protected:
     DataType* m_pData;
 };
@@ -107,18 +109,21 @@ template<class DataHolderType>
 class CDataHolder
 {
 public:
-    using WriteDataHolderPtr = std::shared_ptr<CPWriteDataHolder<DataHolderType>>;
-    using ReadDataHolderPtr = std::shared_ptr<CPReadDataHolder<DataHolderType>>;
+
+    using WriteDataHolderType = CPWriteDataHolder<DataHolderType>;
+    using ReadDataHolderType = CPReadDataHolder<DataHolderType>;
+    using WriteDataHolderPtr = std::shared_ptr<WriteDataHolderType>;
+    using ReadDataHolderPtr = std::shared_ptr<ReadDataHolderType>;
     CDataHolder(): m_pData(new DataHolderType())
     {
 
     }
     ReadDataHolderPtr GetReadData(){
-        return std::make_shared<CPReadDataHolder<DataHolderType>>(CPReadDataHolder<DataHolderType>(m_pData));
+        return std::make_shared<ReadDataHolderType>(CPReadDataHolder<DataHolderType>(m_pData));
     }
 protected:
     WriteDataHolderPtr GetWriteData(){
-        return std::make_shared<CPWriteDataHolder<DataHolderType>>(m_pData);
+        return std::make_shared<WriteDataHolderType>(m_pData);
     }
 
 

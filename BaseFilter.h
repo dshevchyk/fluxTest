@@ -15,7 +15,7 @@ class IFilter
 {
 public:
     virtual int GetTypeId() = 0;
-    virtual void handle(CBaseEvent* pEvent) = 0;
+    virtual void Handle(CBaseEvent* pEvent) = 0;
 };
 
 template<class EventType>
@@ -24,20 +24,13 @@ class CBaseFilter: public IFilter
 public:
     CBaseFilter(CEventListener<EventType>* pListener);
     virtual ~CBaseFilter();
-    virtual std::string getType();
 
-    template<class Filter>
-    static std::string type()
-    {
-        return typeid(Filter).name();
-    }
-    void handle(CBaseEvent* pEvent) override;
+    void Handle(CBaseEvent* pEvent) override;
 
     int GetTypeId()
     {
         return CBaseEvent::TypeId<EventType>();
     }
-
 
 protected:
     CEventListener<EventType>* m_pListener;
