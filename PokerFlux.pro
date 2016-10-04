@@ -36,9 +36,9 @@ win32 {
 }
 
 HEADERS = $$files(*.h, true) \
-    $$files(priv/*.h)
 SOURCES = $$files(*.cpp, true) \
-    $$files(priv/*.cpp)
+
+SOURCES -= $$files(main.cpp, true)
 
 SOURCES -= $$files(DebugQtCreator/GeneratedFiles/Debug/*.cpp, true)
 HEADERS -= $$files(DebugQtCreator/GeneratedFiles/Debug/*.h, true)

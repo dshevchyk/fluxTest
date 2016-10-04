@@ -16,7 +16,6 @@ class CUserInfoStore :  public  CAppStore,
         public CDataHolder<CUserInfoDataHolder>
         , public CEventListener<CSetNicknameEvent>
         , public CEventListener<CSetUserBalanceEvent>
-        , public CEventListener<CSetNicknameEvent>
 {
     Q_OBJECT
 public:
