@@ -6,6 +6,29 @@
 
 #include "AutoLock.h"
 
+class CEventWrapper: public QEvent
+{
+public:
+    CEventWrapper(CBaseEvent* pData):
+        QEvent(QEvent::User),
+        m_pData(pData)
+    {
+    }
+    ~CEventWrapper()
+    {
+        if(m_pData)
+            delete m_pData;
+    }
+
+    CBaseEvent* GetData()
+    {
+        return m_pData;
+    }
+
+private:
+    CBaseEvent* m_pData;
+};
+
 CAppDispatcher* CAppDispatcher::m_pInstance = nullptr;
 std::mutex listenersMutex;
 
@@ -49,15 +72,16 @@ CAppDispatcher* CAppDispatcher::Instance()
 {
     return CAppDispatcher::m_pInstance;
 }
+
 void CAppDispatcher::dispatch(CBaseEvent* message)
 {
-    QCoreApplication::postEvent(this, message);
+    QCoreApplication::postEvent(this, new CEventWrapper(message));
 }
 
 bool CAppDispatcher::event( QEvent* ptrEvent )
 {
-    if(dynamic_cast<CBaseEvent*>(ptrEvent)) {
-        return event(dynamic_cast<CBaseEvent*>(ptrEvent));
+    if(dynamic_cast<CEventWrapper*>(ptrEvent)) {
+        return event(dynamic_cast<CEventWrapper*>(ptrEvent)->GetData());
     }
     return QObject::event(ptrEvent);
 }

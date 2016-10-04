@@ -2,28 +2,21 @@
 #include "SetNicknameEvent.h"
 
 
-CSetNicknameEvent::CSetNicknameEvent(QString sNickname):
-
-    QObject(nullptr),
+CSetNicknameEvent::CSetNicknameEvent(const std::string& sNickname):
     m_sNewNickname(sNickname)
 {
 }
 
-CSetNicknameEvent::CSetNicknameEvent(const CSetNicknameEvent* eventToCopy)
-{
-    this->m_sNewNickname = eventToCopy->nickname();
-}
 
 CSetNicknameEvent::~CSetNicknameEvent()
 {
 
 }
 
-QString CSetNicknameEvent::nickname() const {
+const std::string& CSetNicknameEvent::nickname() const {
     return m_sNewNickname;
 }
 
-void CSetNicknameEvent::setNickname(const QString &sNewNickname) {
+void CSetNicknameEvent::setNickname(const std::string &sNewNickname) {
     m_sNewNickname = sNewNickname;
-    emit onNicknameChanged();
 }

@@ -1,9 +1,7 @@
 #ifndef CBASEFilter_H
 #define CBASEFilter_H
 
-#include <QEvent>
 
-#include <typeinfo>
 #include "BaseEvent.h"
 
 class CBaseStore;
@@ -34,7 +32,6 @@ public:
 
 protected:
     CEventListener<EventType>* m_pListener;
-
 };
 
 

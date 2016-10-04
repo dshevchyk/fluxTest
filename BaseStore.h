@@ -1,35 +1,18 @@
 #ifndef CBASESTORE_H
 #define CBASESTORE_H
 
-#include <QObject>
-#include <QQuickItem>
-
-#include "EventThreadInvoker.h"
-
-#include <QApplication>
 class CBaseEvent;
 class IFilter;
-class CBaseStore: public CQtEventThreadInvoker<QQuickItem>
+class CBaseStore
 {
-    Q_OBJECT
 public:
-    explicit CBaseStore(QQuickItem* parent):
-        CQtEventThreadInvoker<QQuickItem>(parent)
-        //m_pThread(new QThread())
-    {
-        if(parent == nullptr)
-        {
-            //m_pThread->start();
-            moveToThread(QApplication::instance()->thread());
-        }
-    }
 
-    virtual void Handle(CBaseEvent* event) = 0;
+    typedef std::map<int, IFilter* > BaseFiltersMap_t;
 
-
-    virtual void AddFilter(IFilter* filter) = 0;
+    virtual void Handle(CBaseEvent* event);
+    virtual void AddFilter(IFilter* filter);
 protected:
-    //QThread* m_pThread;
+    BaseFiltersMap_t m_mapFilters;
 };
 
 #endif // CBASESTORE_H

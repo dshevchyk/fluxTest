@@ -20,8 +20,8 @@ class CUserInfoDataHolder: public BaseDataHolder
 
 {
 public:
-    POKER_DATA_HOLDER_PROPERTY(QString, nickname, GetNickname, SetNickname, "")
-    POKER_DATA_HOLDER_PROPERTY(QString, balance, GetBalance, SetBalance, "")
+    POKER_DATA_HOLDER_PROPERTY(std::string, nickname, GetNickname, SetNickname, "")
+    POKER_DATA_HOLDER_PROPERTY(std::string, balance, GetBalance, SetBalance, "")
 };
 
 

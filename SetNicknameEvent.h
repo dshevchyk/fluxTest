@@ -3,33 +3,20 @@
 
 
 #include "BaseEvent.h"
-#include <QString>
-#include <QObject>
 
 
 
-class CSetNicknameEvent:public QObject, public CBaseEventTemplate<CSetNicknameEvent>   {
-    Q_OBJECT
+class CSetNicknameEvent: public CBaseEventTemplate<CSetNicknameEvent>   {
 public:
-    Q_PROPERTY(QString nickname READ nickname WRITE setNickname NOTIFY onNicknameChanged)
-    static CSetNicknameEvent* create(QString nickname)
-    {
-        return new CSetNicknameEvent(nickname);
-    }
-
-    CSetNicknameEvent(const CSetNicknameEvent* eventToCopy);
-    CSetNicknameEvent(QString sNickname = "");
+    CSetNicknameEvent(const std::string& sNickname = "");
     ~CSetNicknameEvent();
 
-    virtual QString nickname() const;
+    virtual const std::string& nickname() const;
 
-    virtual void setNickname(const QString &sNewNickname);
+    virtual void setNickname(const std::string &sNewNickname);
 
-
-signals:
-    void onNicknameChanged();
 private:
-    QString m_sNewNickname;
+    std::string m_sNewNickname;
 };
 
 #endif // CSETNICKNAMEEVENT_H

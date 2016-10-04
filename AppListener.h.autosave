@@ -12,6 +12,7 @@ class CAppStore  : public CQtEventThreadInvoker<QQuickItem>, public CBaseStore
     Q_OBJECT
 public:
     explicit CAppStore(QQuickItem* parent);
+
     virtual ~CAppStore();
 protected:
 

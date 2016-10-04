@@ -5,11 +5,11 @@
 
 #include <typeinfo>
 
-class CBaseEvent: public QEvent
+class CBaseEvent
 {
 public:
     CBaseEvent();
-
+    virtual ~CBaseEvent(){}
     virtual int getTypeId() = 0;
 
     template<class Event>

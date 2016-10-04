@@ -13,12 +13,12 @@ CAppEventsQMLProxy::CAppEventsQMLProxy(QObject *pParent)
 
 void CAppEventsQMLProxy::changeNickname(QString nickname)
 {
-    CAppDispatcher::Instance()->dispatch(new CSetNicknameEvent(nickname));
+    CAppDispatcher::Instance()->dispatch(new CSetNicknameEvent(nickname.toStdString()));
 }
 
 void CAppEventsQMLProxy::changeBalance(QString balance)
 {
-    CAppDispatcher::Instance()->dispatch(new CSetUserBalanceEvent(balance));
+    CAppDispatcher::Instance()->dispatch(new CSetUserBalanceEvent(balance.toStdString()));
 }
 
 QObject* CAppEventsQMLProxy::Instance(QQmlEngine *engine, QJSEngine *scriptEngine)
@@ -28,7 +28,6 @@ QObject* CAppEventsQMLProxy::Instance(QQmlEngine *engine, QJSEngine *scriptEngin
 
     if(CAppEventsQMLProxy::m_pInstance == nullptr)
         CAppEventsQMLProxy::m_pInstance = new CAppEventsQMLProxy();
-
 
     return CAppEventsQMLProxy::m_pInstance;
 }

@@ -3,27 +3,19 @@
 
 
 #include "BaseEvent.h"
-#include <QString>
-#include <QObject>
+#include <string>
 
 
-
-class CSetUserBalanceEvent:public QObject, public CBaseEventTemplate<CSetUserBalanceEvent>  {
-    Q_OBJECT
+class CSetUserBalanceEvent: public CBaseEventTemplate<CSetUserBalanceEvent>  {
 public:
-    Q_PROPERTY(QString balance READ balance WRITE setBalance NOTIFY onBalanceChanged)
-
-
-    CSetUserBalanceEvent(const CSetUserBalanceEvent* eventToCopy);
-    CSetUserBalanceEvent(QString sbalance = "");
+    CSetUserBalanceEvent(const std::string& sbalance = "");
     ~CSetUserBalanceEvent();
 
-    virtual QString balance() const;
-    virtual void setBalance(const QString &sNewbalance);
-signals:
-    void onBalanceChanged();
+    virtual const std::string& balance() const;
+    virtual void setBalance(const std::string &sNewbalance);
+
 private:
-    QString m_sNewbalance;
+    std::string m_sNewBalance;
 };
 
 #endif // CSETUSERBALANCEEVENT_H
