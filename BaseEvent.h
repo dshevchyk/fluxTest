@@ -6,22 +6,20 @@
 #include <typeinfo>
 
 class CBaseEvent: public QEvent
-
 {
 public:
     CBaseEvent();
-    virtual ~CBaseEvent();
 
     virtual int getTypeId() = 0;
 
     template<class Event>
     static int TypeId()
     {
-        static int iEventTypeId = ++m_iId;
+        static int iEventTypeId = ++m_iIdCounter;
         return iEventTypeId;
     }
 private:
-    static int m_iId;
+    static int m_iIdCounter;
 };
 
 

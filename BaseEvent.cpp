@@ -1,13 +1,8 @@
 
 #include "BaseEvent.h"
-
-int CBaseEvent::m_iId = 0;
-
-CBaseEvent::CBaseEvent(): QEvent(QEvent::User )
-{
-}
-
-CBaseEvent::~CBaseEvent()
+CBaseEvent::CBaseEvent(): QEvent(QEvent::User)
 {
 
 }
+
+int CBaseEvent::m_iIdCounter = 0;
