@@ -8,7 +8,7 @@
 
 
 
-class CSetUserBalanceEvent:public QObject, public CBaseEvent  {
+class CSetUserBalanceEvent:public QObject, public CBaseEventTemplate<CSetUserBalanceEvent>  {
     Q_OBJECT
 public:
     Q_PROPERTY(QString balance READ balance WRITE setBalance NOTIFY onBalanceChanged)
@@ -19,12 +19,7 @@ public:
     ~CSetUserBalanceEvent();
 
     virtual QString balance() const;
-    CBaseEvent* copy() override;
-
     virtual void setBalance(const QString &sNewbalance);
-
-    std::string getType() override;
-
 signals:
     void onBalanceChanged();
 private:

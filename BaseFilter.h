@@ -4,9 +4,9 @@
 #include <QEvent>
 
 #include <typeinfo>
+#include "BaseEvent.h"
 
 class CBaseStore;
-class CBaseEvent;
 
 template<class EventType>
 class CEventListener;
@@ -32,10 +32,11 @@ public:
     }
     void handle(CBaseEvent* pEvent) override;
 
-    static std::string Type()
+    static int Type()
     {
-        return typeid(EventType).name();
+        return CBaseEvent::TypeId<EventType>();
     }
+
 
 protected:
     CEventListener<EventType>* m_pListener;

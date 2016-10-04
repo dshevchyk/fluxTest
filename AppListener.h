@@ -14,14 +14,14 @@ class CAppStore  : public CBaseStore
 {
 public:
     typedef IFilter* FilterPointerType;
-    typedef std::map<std::string, FilterPointerType > BaseFiltersMap_t;
+    typedef std::map<int, FilterPointerType > BaseFiltersMap_t;
     explicit CAppStore(QQuickItem* parent);
     void handle(CBaseEvent* event) override;
 protected:
 
     bool event( QEvent* ptrEvent );
     bool event( CBaseEvent* ptrEvent );
-    void addFilter(std::string type, void* filter) override;
+    void addFilter(int type, void* filter) override;
 private:
     BaseFiltersMap_t m_mapFilters;
 };

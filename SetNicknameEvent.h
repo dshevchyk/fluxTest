@@ -8,7 +8,7 @@
 
 
 
-class CSetNicknameEvent:public QObject, public CBaseEvent  {
+class CSetNicknameEvent:public QObject, public CBaseEventTemplate<CSetNicknameEvent>   {
     Q_OBJECT
 public:
     Q_PROPERTY(QString nickname READ nickname WRITE setNickname NOTIFY onNicknameChanged)
@@ -22,11 +22,9 @@ public:
     ~CSetNicknameEvent();
 
     virtual QString nickname() const;
-    CBaseEvent* copy() override;
 
     virtual void setNickname(const QString &sNewNickname);
 
-    std::string getType() override;
 
 signals:
     void onNicknameChanged();

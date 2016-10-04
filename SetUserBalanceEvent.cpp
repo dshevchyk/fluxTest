@@ -5,7 +5,6 @@
 CSetUserBalanceEvent::CSetUserBalanceEvent(QString sBalance):
 
     QObject(nullptr),
-    CBaseEvent(),
     m_sNewbalance(sBalance)
 {
 }
@@ -17,7 +16,6 @@ CSetUserBalanceEvent::CSetUserBalanceEvent(const CSetUserBalanceEvent* eventToCo
 
 CSetUserBalanceEvent::~CSetUserBalanceEvent()
 {
-
 }
 
 QString CSetUserBalanceEvent::balance() const {
@@ -29,12 +27,3 @@ void CSetUserBalanceEvent::setBalance(const QString &sNewBalance) {
     emit onBalanceChanged();
 }
 
-CBaseEvent* CSetUserBalanceEvent::copy()
-{
-    return new CSetUserBalanceEvent(balance());
-}
-
-std::string CSetUserBalanceEvent::getType()
-{
-    return typeid(*this).name();
-}

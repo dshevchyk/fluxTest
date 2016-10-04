@@ -10,9 +10,9 @@ CAppStore::CAppStore(QQuickItem* parent)
 }
 void CAppStore::handle(CBaseEvent* event)
 {
-    std::string typ = event->getType();
-    if(m_mapFilters.find(event->getType()) != m_mapFilters.end())
-        m_mapFilters[event->getType()]->handle(event);
+    int typ = event->getTypeId();
+    if(m_mapFilters.find(event->getTypeId()) != m_mapFilters.end())
+        m_mapFilters[event->getTypeId()]->handle(event);
 }
 
 bool CAppStore::event( QEvent* ptrEvent )
@@ -30,7 +30,7 @@ bool CAppStore::event( CBaseEvent* ptrEvent )
     return true;
 }
 
-void CAppStore::addFilter(std::string type, void* filter)
+void CAppStore::addFilter(int type, void* filter)
 {
     if(static_cast<FilterPointerType>(filter))
         m_mapFilters[type]= static_cast<FilterPointerType>(filter);

@@ -12,16 +12,26 @@ public:
     CBaseEvent();
     virtual ~CBaseEvent();
 
-
-    virtual std::string getType() = 0;
-    virtual CBaseEvent* copy() = 0;
+    virtual int getTypeId() = 0;
 
     template<class Event>
-    static std::string Type()
+    static int TypeId()
     {
-        return typeid(Event).name();
+        static int iEventTypeId = ++m_iId;
+        return iEventTypeId;
     }
+private:
+    static int m_iId;
 };
 
+
+template<class Event>
+class CBaseEventTemplate: public CBaseEvent {
+public:
+    int getTypeId() override
+    {
+        return CBaseEvent::TypeId<Event>();
+    }
+};
 
 #endif // CBASEEVENT_H

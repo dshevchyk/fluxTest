@@ -5,7 +5,6 @@
 CSetNicknameEvent::CSetNicknameEvent(QString sNickname):
 
     QObject(nullptr),
-    CBaseEvent(),
     m_sNewNickname(sNickname)
 {
 }
@@ -27,14 +26,4 @@ QString CSetNicknameEvent::nickname() const {
 void CSetNicknameEvent::setNickname(const QString &sNewNickname) {
     m_sNewNickname = sNewNickname;
     emit onNicknameChanged();
-}
-
-CBaseEvent* CSetNicknameEvent::copy()
-{
-    return new CSetNicknameEvent(nickname());
-}
-
-std::string CSetNicknameEvent::getType()
-{
-    return typeid(*this).name();
 }
