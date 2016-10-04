@@ -35,8 +35,9 @@ win32 {
     }
 }
 
-HEADERS = $$files(*.h, true) \
-SOURCES = $$files(*.cpp, true) \
+HEADERS = $$files(*.h, true)
+
+SOURCES = $$files(*.cpp, true)
 
 SOURCES -= $$files(main.cpp, true)
 

@@ -1,8 +1,11 @@
 
 #include "AppDispatcher.h"
+#include "BaseEvent.h"
+#include "AppListener.h"
 #include "../PokerClient/PokerApplication.h"
 
 #include "AutoLock.h"
+
 CAppDispatcher* CAppDispatcher::m_pInstance = nullptr;
 std::mutex instanceMutex;
 

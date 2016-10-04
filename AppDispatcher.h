@@ -7,9 +7,8 @@
 #include <QPointer>
 #include <QThread>
 
-#include "BaseEvent.h"
-#include "AppListener.h"
-
+class CBaseStore;
+class CBaseEvent;
 class CAppDispatcher : public QObject
 {
     Q_OBJECT

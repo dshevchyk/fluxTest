@@ -54,9 +54,7 @@ void CUserInfoStore::onMessageReceived(CSetNicknameEvent* event)
 
     CUserInfoStore::Instance()->GetReadData()->data()->GetBalance();
 
-    //ui()->SetTestColor("red");
-
-
+    ui()->SetTestColor("red");
 }
 
 void CUserInfoStore::onMessageReceived(CSetUserBalanceEvent* event)

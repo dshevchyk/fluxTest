@@ -21,7 +21,6 @@ public:
     {
         return typeid(Event).name();
     }
-
 };
 
 
