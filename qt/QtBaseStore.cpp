@@ -1,10 +1,12 @@
-
-#include "AppListener.h"
-#include "BaseEvent.h"
-#include "BaseFilter.h"
-#include "AppDispatcher.h"
 #include <QApplication>
 
+#include "QtBaseStore.h"
+#include "AppDispatcher.h"
+
+#include "general/BaseEvent.h"
+#include "general/BaseFilter.h"
+
+#include "PokerContext.h"
 CAppStore::CAppStore(QQuickItem* parent)
     : CQtEventThreadInvoker<QQuickItem>(parent)
 {
@@ -12,11 +14,9 @@ CAppStore::CAppStore(QQuickItem* parent)
     {
         moveToThread(QApplication::instance()->thread());
     }
-    CAppDispatcher::Instance()->AddListener(this);
 }
 
 CAppStore::~CAppStore()
 {
-    CAppDispatcher::Instance()->RemoveListener(this);
 }
 

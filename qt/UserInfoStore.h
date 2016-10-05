@@ -3,12 +3,13 @@
 
 #include <QObject>
 
-#include "AppListener.h"
-#include "EventListener.h"
-#include "SetNicknameEvent.h"
-#include "SetUserBalanceEvent.h"
-
+#include "QtBaseStore.h"
 #include "UserInfoDataHolder.h"
+
+#include "general/EventListener.h"
+
+class CSetNicknameEvent;
+class CSetUserBalanceEvent;
 class CUserInfoUiModel;
 
 class CUserInfoStore :  public  CAppStore

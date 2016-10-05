@@ -1,8 +1,12 @@
-#include "AppActions.h"
 #include <QApplication>
-#include "AppDispatcher.h"
-#include "SetNicknameEvent.h"
-#include "SetUserBalanceEvent.h"
+
+#include "AppActions.h"
+#include "PokerContext.h"
+
+#include "general/BaseDispatcher.h"
+#include "general/SetNicknameEvent.h"
+#include "general/SetUserBalanceEvent.h"
+
 
 CAppEventsQMLProxy* CAppEventsQMLProxy::m_pInstance = nullptr;
 
@@ -13,12 +17,12 @@ CAppEventsQMLProxy::CAppEventsQMLProxy(QObject *pParent)
 
 void CAppEventsQMLProxy::changeNickname(QString nickname)
 {
-    CAppDispatcher::Instance()->dispatch(new CSetNicknameEvent(nickname.toStdString()));
+    CPokerContext::Dispatcher()->Dispatch(new CSetNicknameEvent(nickname.toStdString()));
 }
 
 void CAppEventsQMLProxy::changeBalance(QString balance)
 {
-    CAppDispatcher::Instance()->dispatch(new CSetUserBalanceEvent(balance.toStdString()));
+    CPokerContext::Dispatcher()->Dispatch(new CSetUserBalanceEvent(balance.toStdString()));
 }
 
 QObject* CAppEventsQMLProxy::Instance(QQmlEngine *engine, QJSEngine *scriptEngine)

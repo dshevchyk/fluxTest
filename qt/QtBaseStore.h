@@ -1,10 +1,11 @@
 #ifndef CAPPLISTENER_H
 #define CAPPLISTENER_H
 
-#include "BaseStore.h"
-#include "EventThreadInvoker.h"
 #include <QQuickItem>
-#include <QApplication>
+
+#include "EventThreadInvoker.h"
+
+#include "general/BaseStore.h"
 class CBaseEvent;
 class IFilter;
 class CAppStore  : public CQtEventThreadInvoker<QQuickItem>, public CBaseStore
@@ -15,7 +16,6 @@ public:
 
     virtual ~CAppStore();
 protected:
-
 };
 
 #endif // CAPPLISTENER_H

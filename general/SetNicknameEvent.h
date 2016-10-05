@@ -4,7 +4,7 @@
 
 #include "BaseEvent.h"
 
-
+#include <string>
 
 class CSetNicknameEvent: public CBaseEventTemplate<CSetNicknameEvent>   {
 public:

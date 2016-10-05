@@ -1,8 +1,6 @@
 #ifndef CBASEEVENT_H
 #define CBASEEVENT_H
 
-#include <QEvent>
-
 #include <typeinfo>
 
 class CBaseEvent

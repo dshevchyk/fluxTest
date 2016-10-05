@@ -1,5 +1,15 @@
-#include "BaseStore.h"
+#include "BaseDispatcher.h"
 #include "BaseFilter.h"
+#include "PokerContext.h"
+
+CBaseStore::CBaseStore()
+{
+    CPokerContext::Dispatcher()->AddListener(this);
+}
+CBaseStore::~CBaseStore()
+{
+    CPokerContext::Dispatcher()->RemoveListener(this);
+}
 
 void CBaseStore::Handle(CBaseEvent* event)
 {

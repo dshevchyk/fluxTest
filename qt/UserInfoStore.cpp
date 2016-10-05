@@ -1,8 +1,13 @@
 
+#include <memory>
+
+#include "AppDispatcher.h"
 #include "UserInfoStore.h"
 #include "UserInfoDataHolder.h"
-#include "AppDispatcher.h"
-#include <memory>
+
+#include "general/SetNicknameEvent.h"
+#include "general/SetUserBalanceEvent.h"
+
 CUserInfoStore* CUserInfoStore::m_pInstance = nullptr;
 
 CUserInfoStore::CUserInfoStore(QQuickItem *parent) :CAppStore(parent),
