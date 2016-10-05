@@ -3,7 +3,7 @@
 #include "AppDispatcher.h"
 #include "AutoLock.h"
 
-#include "general/BaseEvent.h"
+#include "common/base/BaseEvent.h"
 
 #include "../PokerClient/PokerApplication.h"
 

@@ -1,6 +1,8 @@
 
 #include "UserInfoStore.h"
 
+#include "UserInfoDataHolder.h"
+
 static CUserInfoDataHolder m_UserInfoDataHolder;
 CPUserInfoWriteDH CUserInfoStore::GetWriteData()
 {

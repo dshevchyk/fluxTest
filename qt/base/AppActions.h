@@ -14,6 +14,5 @@ public:
     Q_INVOKABLE void changeBalance(QString balance);
 private:
     CAppEventsQMLProxy(QObject* parent = nullptr);
-    static CAppEventsQMLProxy* m_pInstance;
 };
 #endif // CAPPEVENTSQMLPROXY_H

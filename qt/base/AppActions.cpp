@@ -3,12 +3,9 @@
 #include "AppActions.h"
 #include "PokerContext.h"
 
-#include "general/BaseDispatcher.h"
-#include "general/SetNicknameEvent.h"
-#include "general/SetUserBalanceEvent.h"
-
-
-CAppEventsQMLProxy* CAppEventsQMLProxy::m_pInstance = nullptr;
+#include "common/base/BaseDispatcher.h"
+#include "common/events/userinfo/SetNicknameEvent.h"
+#include "common/events/userinfo/SetUserBalanceEvent.h"
 
 CAppEventsQMLProxy::CAppEventsQMLProxy(QObject *pParent)
     : QObject(pParent)
@@ -30,8 +27,7 @@ QObject* CAppEventsQMLProxy::Instance(QQmlEngine *engine, QJSEngine *scriptEngin
     Q_UNUSED(engine);
     Q_UNUSED(scriptEngine);
 
-    if(CAppEventsQMLProxy::m_pInstance == nullptr)
-        CAppEventsQMLProxy::m_pInstance = new CAppEventsQMLProxy();
+    static CAppEventsQMLProxy* proxy = new CAppEventsQMLProxy();
 
-    return CAppEventsQMLProxy::m_pInstance;
+    return proxy;
 }

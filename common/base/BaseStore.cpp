@@ -1,7 +1,6 @@
 #include "BaseDispatcher.h"
 #include "BaseFilter.h"
 #include "PokerContext.h"
-
 CBaseStore::CBaseStore()
 {
     CPokerContext::Dispatcher()->AddListener(this);

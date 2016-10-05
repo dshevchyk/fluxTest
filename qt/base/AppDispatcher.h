@@ -4,16 +4,18 @@
 #include <QObject>
 #include <QQmlEngine>
 
-#include "../general/BaseDispatcher.h"
+#include "common/base/BaseDispatcher.h"
 
+class CPokerContext;
 class CAppDispatcher : public QObject, public CBaseDispatcher
 {
     Q_OBJECT
 public:
-    explicit CAppDispatcher(QObject *parent = 0);
+    friend class CPokerContext;
     ~CAppDispatcher();
     void Dispatch(CBaseEvent* message) override;
 private:
+    explicit CAppDispatcher(QObject *parent = 0);
     bool event( QEvent* ptrEvent ) override;
 private:
     QThread* m_pThread;

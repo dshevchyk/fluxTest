@@ -4,10 +4,12 @@
 #include <typeinfo>
 
 class CBaseDispatcher;
+class CUserInfoStore;
 
 class CPokerContext
 {
 public:
     static CBaseDispatcher* Dispatcher();
+    static CUserInfoStore* UserInfoStore();
 };
 #endif // CPokerContext_H

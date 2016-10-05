@@ -1,7 +1,6 @@
 #ifndef CBASEEVENT_H
 #define CBASEEVENT_H
 
-#include <typeinfo>
 
 class CBaseEvent
 {

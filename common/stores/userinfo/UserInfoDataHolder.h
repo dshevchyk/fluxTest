@@ -1,20 +1,7 @@
-#ifndef CBaseDataHolder_H
-#define CBaseDataHolder_H
+#ifndef CUserinfoDataHolder_H
+#define CUserinfoDataHolder_H
 
-#include "BaseDataHolder.h"
-#include <QString>
-#include <QQuickItem>
-
-
-
-class CUserInfoUiModel:  public CBaseUiModel
-{
-    Q_OBJECT
-public:
-    POKER_UI_PROPERTY(QString, testColor, SetTestColor, onTestColorChanged, "green")
-signals:
-    void onTestColorChanged();
-};
+#include "common/base/BaseDataHolder.h"
 
 class CUserInfoDataHolder: public BaseDataHolder
 
@@ -28,4 +15,4 @@ public:
 using CPUserInfoWriteDH = CPWriteDataHolder<CUserInfoDataHolder>;
 using CPUserInfoReadDH = CPReadDataHolder<CUserInfoDataHolder>;
 
-#endif // CBaseDataHolder_H
+#endif // CUserinfoDataHolder_H

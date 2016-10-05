@@ -6,12 +6,13 @@ class IFilter;
 class CBaseStore
 {
 public:
-    CBaseStore();
     virtual ~CBaseStore();
     typedef std::map<int, IFilter* > BaseFiltersMap_t;
 
     virtual void Handle(CBaseEvent* event);
     virtual void AddFilter(IFilter* filter);
+protected:
+    CBaseStore();
 protected:
     BaseFiltersMap_t m_mapFilters;
 };

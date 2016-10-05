@@ -19,5 +19,6 @@ template <class EventType>
 void CBaseFilter<EventType>::Handle(CBaseEvent* pEvent)
 {
     m_pListener->OnMessageReceived(dynamic_cast<EventType*>(pEvent));
+    m_pListener->PostEvent(dynamic_cast<EventType*>(pEvent));
 }
 #endif

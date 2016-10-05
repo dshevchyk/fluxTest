@@ -7,6 +7,7 @@ class CEventListener
 {
 public:
     virtual void OnMessageReceived(EventType* event) = 0;
+    virtual void PostEvent(EventType* event) {}
     CEventListener(CBaseStore* listener);
 };
 

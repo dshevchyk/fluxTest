@@ -2,8 +2,7 @@
 #define CSETNICKNAMEEVENT_H
 
 
-#include "BaseEvent.h"
-
+#include "common/base/BaseEvent.h"
 #include <string>
 
 class CSetNicknameEvent: public CBaseEventTemplate<CSetNicknameEvent>   {
