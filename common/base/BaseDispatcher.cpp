@@ -4,7 +4,7 @@
 #include "BaseStore.h"
 #include "AutoLock.h"
 
-std::mutex listenersMutex;
+std::recursive_mutex listenersMutex;
 
 CBaseDispatcher::CBaseDispatcher()
 {
@@ -12,13 +12,13 @@ CBaseDispatcher::CBaseDispatcher()
 
 CBaseDispatcher::~CBaseDispatcher()
 {
-    CAutoLock l(&listenersMutex);
+    CAutoRecursiveLock l(&listenersMutex);
     m_vListeners.clear();
 }
 
 bool CBaseDispatcher::Event(const std::shared_ptr<CBaseEvent>&  ptrEvent )
 {
-    CAutoLock l(&listenersMutex);
+    CAutoRecursiveLock l(&listenersMutex);
     for(auto& listener: m_vListeners)
     {
         listener->Execute([listener, ptrEvent]()
@@ -31,12 +31,12 @@ bool CBaseDispatcher::Event(const std::shared_ptr<CBaseEvent>&  ptrEvent )
 
 void CBaseDispatcher::RemoveListener(CBaseStore* pListener)
 {
-    CAutoLock l(&listenersMutex);
+    CAutoRecursiveLock l(&listenersMutex);
     m_vListeners.erase( std::remove( m_vListeners.begin(), m_vListeners.end(), pListener ), m_vListeners.end() );
 }
 void CBaseDispatcher::AddListener(CBaseStore* pListener)
 {
-    CAutoLock l(&listenersMutex);
+    CAutoRecursiveLock l(&listenersMutex);
     m_vListeners.push_back(pListener);
 }
 

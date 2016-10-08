@@ -4,9 +4,10 @@
 #include <QObject>
 #include <QThread>
 
+#include "EventThreadInvoker.h"
+
 #include "common/base/Executor.h"
 
-#include "EventThreadInvoker.h"
 
 class CAsyncExecutor: public CQtEventThreadInvoker<QObject>, public CSyncExecutor
 {

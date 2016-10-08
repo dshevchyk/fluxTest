@@ -6,10 +6,17 @@
 #include "common/base/BaseDispatcher.h"
 #include "common/events/userinfo/SetNicknameEvent.h"
 #include "common/events/userinfo/SetUserBalanceEvent.h"
+#include "common/events/table/CreateTableEvent.h"
 
 CAppEventsQMLProxy::CAppEventsQMLProxy(QObject *pParent)
     : QObject(pParent)
 {
+}
+
+
+void CAppEventsQMLProxy::createTable(int containerId)
+{
+    CPokerContext::Dispatcher()->Dispatch(new CCreateTableEvent(containerId));
 }
 
 void CAppEventsQMLProxy::changeNickname(QString nickname)

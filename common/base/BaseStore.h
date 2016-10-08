@@ -15,11 +15,12 @@ public:
     virtual void Handle(const std::shared_ptr<CBaseEvent>& event);
     virtual void AddFilter(IFilter* filter);
     virtual void Execute(std::function<void(void)> callback);
+    virtual void Delete();
 protected:
     CBaseStore();
 protected:
     //BaseFiltersMap_t m_mapFilters;
-    std::array<IFilter*, 1000> m_arrayFilters = {nullptr};
+    std::array<IFilter*, 1000> m_arrayFilters = {};
     std::shared_ptr<IExecutor> m_pExecutor;
 };
 

@@ -24,6 +24,11 @@ void CBaseStore::Execute(std::function<void(void)> callback)
     m_pExecutor->Execute(callback);
 }
 
+void CBaseStore::Delete()
+{
+    delete this;
+}
+
 void CBaseStore::Handle(const std::shared_ptr<CBaseEvent>& event)
 {
 //    if(m_mapFilters.find(event->getTypeId()) != m_mapFilters.end())

@@ -8,6 +8,8 @@
 
 class CCreateTableEvent;
 class CDeleteTableEvent;
+class CTableStore;
+class CTablesManagerDataHolder;
 
 class CTablesManagerStore :  public  CBaseStore
         , public CEventListener<CCreateTableEvent>
@@ -15,13 +17,13 @@ class CTablesManagerStore :  public  CBaseStore
 {
 public:
     ~CTablesManagerStore();
-    //CPReadDataHolder<CUserInfoDataHolder> GetReadData();
+    CPReadDataHolder<CTablesManagerDataHolder> GetReadData();
 protected:
     explicit CTablesManagerStore();
     void OnMessageReceived(CCreateTableEvent* event) override;
     void OnMessageReceived(CDeleteTableEvent* event) override;
-
-    //CPWriteDataHolder<CUserInfoDataHolder> GetWriteData();
+protected:
+    CPWriteDataHolder<CTablesManagerDataHolder> GetWriteData();
 };
 
 #endif // TablesManagerStore_H

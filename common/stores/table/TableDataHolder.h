@@ -3,14 +3,14 @@
 
 #include "common/base/BaseDataHolder.h"
 
-class CTableDataHolder: public BaseDataHolder
+class CTableDataHolderFlux: public BaseDataHolder
 
 {
 public:
     POKER_DATA_HOLDER_PROPERTY(int, containetId, GetContainerId, SetContainerId, -1)
 };
 
-using CPTableWriteDH = CPWriteDataHolder<CTableDataHolder>;
-using CPTableReadDH = CPReadDataHolder<CTableDataHolder>;
+using CPTableWriteDH = CPWriteDataHolder<CTableDataHolderFlux>;
+using CPTableReadDH = CPReadDataHolder<CTableDataHolderFlux>;
 
 #endif // CTableDataHolder_H

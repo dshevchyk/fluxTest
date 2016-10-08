@@ -6,12 +6,18 @@
 CQtUserInfoStoreMobile::CQtUserInfoStoreMobile(QObject *parent) :QObject(parent),
     m_pUiData(nullptr)
 {
+    moveToThread(QApplication::instance()->thread());
     setUi(new CUserInfoUiModelMobile());
 }
 
 CQtUserInfoStoreMobile::~CQtUserInfoStoreMobile()
 {
     m_pUiData->deleteLater();
+}
+
+void CQtUserInfoStoreMobile::Delete()
+{
+    this->deleteLater();
 }
 
 CUserInfoUiModelMobile* CQtUserInfoStoreMobile::ui()

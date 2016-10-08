@@ -6,18 +6,18 @@
 
 
 CTableStore::CTableStore():
-    m_TableDataHolder(std::unique_ptr<CTableDataHolder>(new CTableDataHolder()))
-//    CEventListener<CSetNicknameEvent>(this),
-//    CEventListener<CSetUserBalanceEvent>(this)
+    m_TableDataHolder(std::unique_ptr<CTableDataHolderFlux>(new CTableDataHolderFlux())),
+    CEventListener<CSetNicknameEvent>(this)
 {
 }
+
 
 CTableStore::~CTableStore()
 {
 }
 
-//void CUserInfoStore::OnMessageReceived(CSetNicknameEvent* event)
-//{
+void CTableStore::OnMessageReceived(CSetNicknameEvent* event)
+{
 //    {
 //        CPUserInfoWriteDH writeDataHolder = GetWriteData();
 //        writeDataHolder->SetNickname(event->nickname());
@@ -26,5 +26,5 @@ CTableStore::~CTableStore()
 //        CPUserInfoReadDH readDataHolder  = GetReadData();
 //        auto nickname = readDataHolder->GetNickname();
 //    }
-//}
+}
 

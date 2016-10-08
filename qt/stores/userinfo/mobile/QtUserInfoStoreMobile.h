@@ -14,6 +14,7 @@ public:
     friend class CPokerContext;
     Q_PROPERTY(CUserInfoUiModelMobile* ui READ ui WRITE setUi NOTIFY onUiChanged)
 
+    void Delete() override;
     ~CQtUserInfoStoreMobile();
 signals:
     void onUiChanged();
