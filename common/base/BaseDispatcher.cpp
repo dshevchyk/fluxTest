@@ -16,12 +16,15 @@ CBaseDispatcher::~CBaseDispatcher()
     m_vListeners.clear();
 }
 
-bool CBaseDispatcher::Event( CBaseEvent* ptrEvent )
+bool CBaseDispatcher::Event(const std::shared_ptr<CBaseEvent>&  ptrEvent )
 {
     CAutoLock l(&listenersMutex);
     for(auto& listener: m_vListeners)
     {
-        listener->Handle(ptrEvent);
+        listener->Execute([listener, ptrEvent]()
+        {
+            listener->Handle(ptrEvent);
+        });
     }
     return true;
 }

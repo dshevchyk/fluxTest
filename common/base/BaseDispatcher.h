@@ -20,7 +20,7 @@ public:
 
 protected:
 
-    bool Event( CBaseEvent* ptrEvent );
+    bool Event(const std::shared_ptr<CBaseEvent>& ptrEvent );
 
 private:
 

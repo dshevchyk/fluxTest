@@ -16,9 +16,12 @@ CBaseFilter<EventType>::~CBaseFilter()
 }
 
 template <class EventType>
-void CBaseFilter<EventType>::Handle(CBaseEvent* pEvent)
+void CBaseFilter<EventType>::Handle(const std::shared_ptr<CBaseEvent>& pEvent)
 {
-    m_pListener->OnMessageReceived(dynamic_cast<EventType*>(pEvent));
-    m_pListener->PostEvent(dynamic_cast<EventType*>(pEvent));
+    if(pEvent != nullptr)
+    {
+        m_pListener->OnMessageReceived(dynamic_cast<EventType*>(pEvent.get()));
+        m_pListener->PostEvent(dynamic_cast<EventType*>(pEvent.get()));
+    }
 }
 #endif

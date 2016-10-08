@@ -1,7 +1,6 @@
 
 #include "SetNicknameEvent.h"
 
-
 CSetNicknameEvent::CSetNicknameEvent(const std::string& sNickname):
     m_sNewNickname(sNickname)
 {
@@ -10,7 +9,6 @@ CSetNicknameEvent::CSetNicknameEvent(const std::string& sNickname):
 
 CSetNicknameEvent::~CSetNicknameEvent()
 {
-
 }
 
 const std::string& CSetNicknameEvent::nickname() const {

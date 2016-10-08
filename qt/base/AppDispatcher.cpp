@@ -12,24 +12,24 @@
 class CEventWrapper: public QEvent
 {
 public:
-    CEventWrapper(CBaseEvent* pData):
+    CEventWrapper(const std::shared_ptr<CBaseEvent>& pData):
         QEvent(QEvent::User),
         m_pData(pData)
     {
     }
     ~CEventWrapper()
     {
-        if(m_pData)
-            delete m_pData;
+//        if(m_pData)
+//            delete m_pData;
     }
 
-    CBaseEvent* GetData()
+    const std::shared_ptr<CBaseEvent>& GetData()
     {
         return m_pData;
     }
 
 private:
-    CBaseEvent* m_pData;
+    const std::shared_ptr<CBaseEvent> m_pData;
 };
 
 
@@ -46,13 +46,13 @@ CAppDispatcher::~CAppDispatcher()
 
 void CAppDispatcher::Dispatch(CBaseEvent* message)
 {
-    QCoreApplication::postEvent(this, new CEventWrapper(message));
+    QCoreApplication::postEvent(this, new CEventWrapper(std::shared_ptr<CBaseEvent>(message)));
 }
 
 bool CAppDispatcher::event( QEvent* ptrEvent )
 {
     if(dynamic_cast<CEventWrapper*>(ptrEvent)) {
-        return Event(dynamic_cast<CEventWrapper*>(ptrEvent)->GetData());
+        Event(dynamic_cast<CEventWrapper*>(ptrEvent)->GetData());
     }
     return QObject::event(ptrEvent);
 }
