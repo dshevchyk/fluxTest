@@ -34,23 +34,3 @@ void CQtUserInfoStoreMobile::PostEvent(CSetUserBalanceEvent* event)
     else
         ui()->SetTestColor("blue");
 }
-
-
-//static int counter = 0;
-//void CUserInfoStore::OnMessageReceived(CSetNicknameEvent* event)
-//{
-//    {
-//        CPUserInfoWriteDH writeDataHolder = GetWriteData();
-//        writeDataHolder->SetNickname(event->nickname());
-//    }
-//    {
-//        CPUserInfoReadDH readDataHolder  = GetReadData();
-//        auto nickname = GetReadData()->GetNickname();
-//    }
-
-//    CUserInfoStore::Instance()->GetReadData()->GetBalance();
-//    if(++counter %2)
-//        ui()->SetTestColor("red");
-//    else
-//        ui()->SetTestColor("blue");
-//}
